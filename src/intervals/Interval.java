@@ -6,7 +6,7 @@ public class Interval {
 
     private double maximum;
 
-    private OpeningType type;
+    private OpeningType _type;
 
     public Interval(double minimum, double maximum, Opening opening) {
         this.minimum = minimum;
@@ -125,10 +125,12 @@ public class Interval {
     }
 
     public Opening getType() {
-        return this.type.getTypeCode();
+        return this._type.getTypeCode();
     }
 
     public void setType(Opening type) {
-        this.type=OpeningType.newType(type);
+        this._type=OpeningType.newType(type);
     }
+
+   
 }
