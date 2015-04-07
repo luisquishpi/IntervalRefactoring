@@ -129,21 +129,6 @@ public class Interval {
     }
 
     public void setType(Opening type) {
-        switch (type) {
-        case BOTH_OPENED:
-            this.type= new BothOpened();
-            break;
-        case LEFT_OPENED:
-            this.type = new LeftOpened();
-            break;
-        case RIGHT_OPENED:
-            this.type =new RightOpened();
-            break;
-        case UNOPENED:
-            this.type= new UnOpened();
-            break;
-        default:
-            throw new IllegalArgumentException("Incorrect type Opening");
-        }
+        this.type=OpeningType.newType(type);
     }
 }
