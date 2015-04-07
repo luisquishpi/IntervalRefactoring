@@ -19,71 +19,11 @@ public class Interval {
     }
 
     public boolean includes(double value) {
-        switch (getType()) {
-        case BOTH_OPENED:
-            return value > this.getMinimum() && value < this.getMaximum();
-        case LEFT_OPENED:
-            return value > this.getMinimum() && value <= this.getMaximum();
-        case RIGHT_OPENED:
-            return value >= this.getMinimum() && value < this.getMaximum();
-        case UNOPENED:
-            return value >= this.getMinimum() && value <= this.getMaximum();
-        }
-        return false;
+        return _type.includes(this, value);
     }
 
     public boolean includes(Interval interval) {
-        switch (getType()) {
-        case BOTH_OPENED:
-            switch (interval.getType()) {
-            case BOTH_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case LEFT_OPENED:
-                return this.minimum <= interval.minimum && this.maximum > interval.maximum;
-            case RIGHT_OPENED:
-                return this.minimum < interval.minimum && this.maximum >= interval.maximum;
-            case UNOPENED:
-                return this.minimum < interval.minimum && this.maximum > interval.maximum;
-            }
-            return false;
-        case LEFT_OPENED:
-            switch (interval.getType()) {
-            case BOTH_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case LEFT_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case RIGHT_OPENED:
-                return this.minimum < interval.minimum && this.maximum >= interval.maximum;
-            case UNOPENED:
-                return this.minimum < interval.minimum && this.maximum >= interval.maximum;
-            }
-            return false;
-        case RIGHT_OPENED:
-            switch (interval.getType()) {
-            case BOTH_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case LEFT_OPENED:
-                return this.minimum <= interval.minimum && this.maximum > interval.maximum;
-            case RIGHT_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case UNOPENED:
-                return this.minimum <= interval.minimum && this.maximum > interval.maximum;
-            }
-            return false;
-        case UNOPENED:
-            switch (interval.getType()) {
-            case BOTH_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case LEFT_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case RIGHT_OPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            case UNOPENED:
-                return this.minimum <= interval.minimum && this.maximum >= interval.maximum;
-            }
-            return false;
-        }
-        return false;
+        return _type.includes(this, interval);
     }
 
     public boolean intersectsWith(Interval interval) {
