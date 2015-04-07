@@ -6,7 +6,7 @@ public class Interval {
 
     private double maximum;
 
-    private Opening type;
+    private OpeningType type;
 
     public Interval(double minimum, double maximum, Opening opening) {
         this.minimum = minimum;
@@ -33,7 +33,7 @@ public class Interval {
     }
 
     public boolean includes(Interval interval) {
-        switch (this.type) {
+        switch (getType()) {
         case BOTH_OPENED:
             switch (interval.getType()) {
             case BOTH_OPENED:
@@ -125,10 +125,25 @@ public class Interval {
     }
 
     public Opening getType() {
-        return type;
+        return this.type.getTypeCode();
     }
 
     public void setType(Opening type) {
-        this.type = type;
+        switch (type) {
+        case BOTH_OPENED:
+            this.type= new BothOpened();
+            break;
+        case LEFT_OPENED:
+            this.type = new LeftOpened();
+            break;
+        case RIGHT_OPENED:
+            this.type =new RightOpened();
+            break;
+        case UNOPENED:
+            this.type= new UnOpened();
+            break;
+        default:
+            throw new IllegalArgumentException("Incorrect type Opening");
+        }
     }
 }
