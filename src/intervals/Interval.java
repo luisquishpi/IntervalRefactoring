@@ -11,7 +11,7 @@ public class Interval {
     public Interval(double minimum, double maximum, Opening opening) {
         this.minimum = minimum;
         this.maximum = maximum;
-        this.type = opening;
+        setType(opening);
     }
 
     public double midPoint() {
@@ -19,7 +19,7 @@ public class Interval {
     }
 
     public boolean includes(double value) {
-        switch (this.type) {
+        switch (getType()) {
         case BOTH_OPENED:
             return value > this.getMinimum() && value < this.getMaximum();
         case LEFT_OPENED:
