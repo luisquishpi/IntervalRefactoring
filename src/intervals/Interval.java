@@ -129,8 +129,7 @@ public class Interval {
     }
 
     public void setType(Opening type) {
-        this._type=OpeningType.newType(type);
+        this._type = OpeningType.newType(type);
     }
 
-   
 }
