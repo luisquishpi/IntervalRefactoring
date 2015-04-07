@@ -9,13 +9,13 @@ public class Interval {
     private OpeningType _type;
 
     public Interval(double minimum, double maximum, Opening opening) {
-        this.minimum = minimum;
-        this.maximum = maximum;
+        this.setMinimum(minimum); 
+        this.setMaximum(maximum);
         setType(opening);
     }
 
     public double midPoint() {
-        return (maximum + minimum) / 2d;
+        return (getMaximum() + getMinimum()) / 2d;
     }
 
     public boolean includes(double value) {
